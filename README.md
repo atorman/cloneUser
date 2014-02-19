@@ -6,6 +6,8 @@ This repo contains a force.com project called CloneUser. CloneUser is designed t
 2. I should only have to provide the minimal information necessary for the clone to take place. 
 3. The new user should include all access right groupings (public groups and permission sets) necessary to get them up and running as soon as possible.
 
+![alt tag] (https://github.com/atorman/cloneUser/cloneUserDemo.png)
+
 Specifically, this project provides a set of
 VisualForce pages, Apex classes, a permission set, a tabset (app), and a tab that demonstrates one possible way of cloning a user. The Apex classes can and should be reused for other applications as well as extended to include additional child or non-related objects.
 
