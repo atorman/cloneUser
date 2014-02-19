@@ -1,5 +1,5 @@
-cloneUser
-=========================
+## cloneUser
+
 This repo contains a force.com project called CloneUser. CloneUser is designed to meet a fundamental user provisioning request: 
 
 1. I should be able to provision a new user by cloning an existing one. 
@@ -11,8 +11,8 @@ VisualForce pages, Apex classes, a permission set, a tabset (app), and a tab tha
 
 This idea has been on the IdeaExchange for a number of years: https://success.salesforce.com/ideaView?id=08730000000BpK9AAK. Typically, this has led to any number of additional interesting hacks such as cloning a user without Apex (http://www.codebycody.com/2013/06/clone-user-in-salesforcecom-without-apex.html) and the idea of a custom clone user button (https://success.salesforce.com/answers?id=90630000000grMNAAY).
 
-installation
-=========================
+## Installation
+
 The easiest way to install this project into your org is to make use of the workbench tool (http://workbench.developerforce.com).  
 
 1. Download a ZIP of the repository. 
@@ -22,12 +22,12 @@ The easiest way to install this project into your org is to make use of the work
 5. If you get an error that the deployment failed because package.xml cannot be found: unzip the cloneUser.zip file you downloaded and use the terminal to re-zip it (e.g. zip -r cloneUser.zip cloneUser) before retrying step 4.
 
 
-configuration and usage
-=========================
+## Configuration and Usage
+
 Assign the CloneUser permission set to any administrator  who should be able to clone users using this utility.
 
 Once this permission set is assigned, they should be able to go to the app, select the tab, and begin cloning. All that is required is a first name, last name, and an email address. Everything else is either assumed or copied from the source user.
 
-credit
-=========================
+## Credit
+
 Most of the Apex code was created by our intern, Ian Dalton, last summer after I pitched the idea for a simple administrative cloning app for cloning users built on top of Apex and VisualForce. I created the VisualForce page and Apex controller that provided a front end user interface for cloning the users. This repo is As-Is. All pull requests are welcome.
