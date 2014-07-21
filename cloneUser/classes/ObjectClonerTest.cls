@@ -51,19 +51,19 @@ public class ObjectClonerTest {
     @isTest static void testCloneClauseList() {
         User u1 = tempUser();
         User u2 = tempUser();
-        PermissionSet ps = new PermissionSet(Name = 'Foo', Label = 'Foo');
+        PermissionSet ps = new PermissionSet(Name = 'Foot', Label = 'Foot');
 
         insert u1;
         insert u2;
         insert ps;
-
-        PermissionSetAssignment psa =
+    
+            PermissionSetAssignment psa =
             new PermissionSetAssignment(AssigneeId = u1.Id,
                                         PermissionSetId = ps.Id);
-
+        //Fixed ObjectCloner test by moving try statement before psa
+        try {
         insert psa;
 
-        try {
             ObjectCloner oc = new ObjectCloner('PermissionSetAssignment');
             SObject[] clones =
                 oc.clone(u1.Id, u2.Id,
@@ -77,7 +77,9 @@ public class ObjectClonerTest {
             u2.IsActive = false;
             update u1;
             update u2;
-            delete psa;
+            //Fixed ObjectCloner test by cleaning up assignment only if not null
+            if(psa.Id != null)
+                delete psa;
             delete ps;
         }
     }
@@ -85,7 +87,7 @@ public class ObjectClonerTest {
     @isTest static void testCloneClauseListNull() {
         User u1 = tempUser();
         User u2 = tempUser();
-        PermissionSet ps = new PermissionSet(Name = 'Foo', Label = 'Foo');
+        PermissionSet ps = new PermissionSet(Name = 'Foot', Label = 'Foot');
 
         insert u1;
         insert u2;
@@ -94,10 +96,11 @@ public class ObjectClonerTest {
         PermissionSetAssignment psa =
             new PermissionSetAssignment(AssigneeId = u1.Id,
                                         PermissionSetId = ps.Id);
-
+        //Fixed ObjectCloner test by moving try statement before psa
+        try {
         insert psa;
 
-        try {
+        
             ObjectCloner oc = new ObjectCloner('PermissionSetAssignment');
             SObject[] clones = oc.clone(u1.Id, u2.Id, (List<String>)null);
 
@@ -107,7 +110,9 @@ public class ObjectClonerTest {
             u2.IsActive = false;
             update u1;
             update u2;
-            delete psa;
+            //Fixed ObjectCloner test by cleaning up assignment only if not null
+            if(psa.Id != null)
+                delete psa;
             delete ps;
         }
     }
@@ -115,7 +120,7 @@ public class ObjectClonerTest {
     @isTest static void testCloneClauseString() {
         User u1 = tempUser();
         User u2 = tempUser();
-        PermissionSet ps = new PermissionSet(Name = 'Foo', Label = 'Foo');
+        PermissionSet ps = new PermissionSet(Name = 'Foot', Label = 'Foot');
 
         insert u1;
         insert u2;
@@ -124,10 +129,10 @@ public class ObjectClonerTest {
         PermissionSetAssignment psa =
             new PermissionSetAssignment(AssigneeId = u1.Id,
                                         PermissionSetId = ps.Id);
-
+        //Fixed ObjectCloner test by moving try statement before psa
+        try {
         insert psa;
 
-        try {
             ObjectCloner oc = new ObjectCloner('PermissionSetAssignment');
             SObject[] clones =
                 oc.clone(u1.Id, u2.Id,
@@ -139,7 +144,9 @@ public class ObjectClonerTest {
             u2.IsActive = false;
             update u1;
             update u2;
-            delete psa;
+            //Fixed ObjectCloner test by cleaning up assignment only if not null
+            if(psa.Id != null)
+                delete psa;
             delete ps;
         }
     }
@@ -147,7 +154,7 @@ public class ObjectClonerTest {
     @isTest static void testCloneClauseStringNull() {
         User u1 = tempUser();
         User u2 = tempUser();
-        PermissionSet ps = new PermissionSet(Name = 'Foo', Label = 'Foo');
+        PermissionSet ps = new PermissionSet(Name = 'Foot', Label = 'Foot');
 
         insert u1;
         insert u2;
@@ -156,10 +163,12 @@ public class ObjectClonerTest {
         PermissionSetAssignment psa =
             new PermissionSetAssignment(AssigneeId = u1.Id,
                                         PermissionSetId = ps.Id);
-
+        
+        //Fixed ObjectCloner test by moving try statement before psa
+        try {
         insert psa;
 
-        try {
+        
             ObjectCloner oc = new ObjectCloner('PermissionSetAssignment');
             SObject[] clones = oc.clone(u1.Id, u2.Id, (String)null);
 
@@ -169,7 +178,9 @@ public class ObjectClonerTest {
             u2.IsActive = false;
             update u1;
             update u2;
-            delete psa;
+            //Fixed ObjectCloner test by cleaning up assignment only if not null
+            if(psa.id != null)
+                delete psa;
             delete ps;
         }
     }

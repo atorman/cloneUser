@@ -3,6 +3,7 @@
  *
  * @author idalton
  * @modified atorman
+ * @modified jbrock
  * @since August 2013
  */
 public class GeneralCloner {
@@ -46,7 +47,10 @@ public class GeneralCloner {
                                               Id origUserId, Id clonedUserId) {
         ObjectCloner oc = new ObjectCloner(objectName);
         SObject[] clonedRecords = oc.clone(origUserId, clonedUserId, clause);
-        SObject[] newClonedRecords;
+        System.debug('cloned records: '+clonedRecords);
+        
+        //Fixed GeneralCloner by setting SObject to an empty object
+        SObject[] newClonedRecords = new SObject[]{};
 
        /** When a new User record is inserted, a DivisionMember record based on
         * its DefaultDivision field is automatically created and inserted. When
@@ -54,7 +58,7 @@ public class GeneralCloner {
         * User, one may end up containing the same field values as the earlier,
         * automatically-created record. Ensure we exclude this equivalent
         * record before inserting.
-		*/
+        */
                                                   
         if (objectName == 'DivisionMember') {
             Map<String, Schema.SObjectType> objectMap =
@@ -79,7 +83,11 @@ public class GeneralCloner {
         } else {
             newClonedRecords = clonedRecords;
         }
-        insert newClonedRecords;
+        System.debug('new cloned records: '+newClonedRecords);
+        
+        //Fixed GeneralCloner by first checking the size of newClonedRecords
+        if(newClonedRecords.size() > 0)
+            insert newClonedRecords;
     }
 
     private void cloneAndInsertRecords(String objectName, String clause) {
@@ -108,9 +116,9 @@ public class GeneralCloner {
     * - User
     * - PermissionSetAssignment
     * - GroupMember
-	*/
+    */
     
-	/**
+    /**
      * Clone and insert a User and its associated records, returning the new
      * User Id. Associated records may be created after the User Id is returned.
      *

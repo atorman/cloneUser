@@ -95,15 +95,18 @@ public class GeneralClonerTest {
         try {
             GeneralCloner gc = new GeneralCloner(u.Id);
             Id cId = gc.cloneAndInsert('John', 'Smith',
-                                       'jsmith@example.net');
+                                       'jsmith1@example1.net');
+            System.debug('cId: ' + cId);
             User clone = [select Id from User where Id = :cId];
 
             System.assert(true);
             clone.IsActive = false;
             update clone;
+            System.debug('clone: '+ clone);
         } finally {
             u.IsActive = false;
             update u;
+            System.debug('u: '+ u);
         }
     }
 }

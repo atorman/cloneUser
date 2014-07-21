@@ -2,7 +2,9 @@
  * Clone functionality for an sObject.
  *
  * @author idalton
- * @November 2013
+ * @modified atorman
+ * @modified jbrock
+ * @since August 2013
  */
 public class ObjectCloner {
     private Map<String, Schema.SObjectType> objectMap;
